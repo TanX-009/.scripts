@@ -18,7 +18,7 @@ fi
 mkdir -p "$HOME/.config/presets"
 
 # Apply the color preset
-gradience-cli apply -p "$HOME/.colors/gtk/preset.json" --gtk both
+gradience-cli apply -p "$HOME/.colors/generated/gtk/preset.json" --gtk both
 
 # Set GTK theme, color scheme, and icon theme
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME_NAME"
