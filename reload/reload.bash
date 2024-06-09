@@ -38,3 +38,5 @@ fi
 if [ -n "$mode" ]; then
 	"$SCRIPT_DIR"/apply-gradience.bash "$mode" >"$CACHE_DIR"/gradience.log 2>&1
 fi
+
+"$SCRIPT_DIR"/apply-kvantum.bash >"$CACHE_DIR"/kvantum.log 2>&1
