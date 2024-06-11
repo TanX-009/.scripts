@@ -32,6 +32,15 @@ done
 
 # if launch then only apply kvantum, gradience and
 # start waybar, swaybg don't generate anything
+# else generate and apply
+
+# waybar
+"$SCRIPT_DIR"/waybar.bash >"$CACHE_DIR"/waybar.log 2>&1
+# swaybg
+if [ -n "$wall" ]; then
+	"$SCRIPT_DIR"/swaybg.bash "$wall" >"$CACHE_DIR"/swaybg.log 2>&1
+fi
+
 if $launch_only; then
 	# gradience
 	if [ -n "$mode" ]; then
@@ -39,8 +48,6 @@ if $launch_only; then
 	fi
 	# kvantum
 	"$SCRIPT_DIR"/kvantum.bash -r >"$CACHE_DIR"/kvantum.log 2>&1
-
-# else generate and apply
 else
 	# swaync
 	"$SCRIPT_DIR"/swaync.bash >"$CACHE_DIR"/swaync.log 2>&1
@@ -52,11 +59,4 @@ else
 	fi
 	# kvantum
 	"$SCRIPT_DIR"/kvantum.bash >"$CACHE_DIR"/kvantum.log 2>&1
-fi
-
-# waybar
-"$SCRIPT_DIR"/waybar.bash >"$CACHE_DIR"/waybar.log 2>&1
-# swaybg
-if [ -n "$wall" ]; then
-	"$SCRIPT_DIR"/swaybg.bash "$wall" >"$CACHE_DIR"/swaybg.log 2>&1
 fi
