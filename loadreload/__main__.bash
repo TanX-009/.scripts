@@ -31,11 +31,11 @@ while getopts "w:m:l" opt; do
 done
 
 # if launch then only apply kvantum, gradience and
-# start waybar, swaybg don't generate anything
+# start ags, swaybg don't generate anything
 # else generate and apply
 
-# waybar
-"$SCRIPT_DIR"/waybar.bash >"$CACHE_DIR"/waybar.log 2>&1
+# ags
+"$SCRIPT_DIR"/ags.bash >"$CACHE_DIR"/ags.log 2>&1
 # swaybg
 if [ -n "$wall" ]; then
 	"$SCRIPT_DIR"/swaybg.bash "$wall" >"$CACHE_DIR"/swaybg.log 2>&1
@@ -50,7 +50,7 @@ if $launch_only; then
 	"$SCRIPT_DIR"/kvantum.bash -r >"$CACHE_DIR"/kvantum.log 2>&1
 else
 	# swaync
-	"$SCRIPT_DIR"/swaync.bash >"$CACHE_DIR"/swaync.log 2>&1
+	# "$SCRIPT_DIR"/swaync.bash >"$CACHE_DIR"/swaync.log 2>&1
 	# terminal
 	"$SCRIPT_DIR"/ptm.bash >"$CACHE_DIR"/terminal.log 2>&1
 	# gradience
