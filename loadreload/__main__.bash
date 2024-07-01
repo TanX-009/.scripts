@@ -39,7 +39,7 @@ while getopts "w:m:lrR" opt; do
 done
 
 # if launch then only apply kvantum, gradience and
-# start ags, swaybg don't generate anything
+# start waybar, swaybg don't generate anything
 # else generate and apply
 
 if $launch; then
@@ -56,35 +56,29 @@ if $launch; then
 	# kvantum
 	"$SCRIPT_DIR"/kvantum.bash >"$CACHE_DIR"/kvantum.log 2>&1
 else
+	# swaybg
+	if [ -n "$wall" ]; then
+		"$SCRIPT_DIR"/swaybg.bash "$wall" >"$CACHE_DIR"/swaybg.log 2>&1
+	fi
 	# hyprland
 	"$SCRIPT_DIR"/hyprland.bash >"$CACHE_DIR"/hyprland.log
 	# terminal
 	"$SCRIPT_DIR"/ptm.bash >"$CACHE_DIR"/terminal.log 2>&1
-
-fi
-
-if $reload; then
-	# ags
-	"$SCRIPT_DIR"/ags.bash -r >"$CACHE_DIR"/ags.log 2>&1
 	# gradience
 	if [ -n "$mode" ]; then
 		"$SCRIPT_DIR"/gradience.bash "$mode" >"$CACHE_DIR"/gradience.log 2>&1
 	fi
 	# kvantum
 	"$SCRIPT_DIR"/kvantum.bash >"$CACHE_DIR"/kvantum.log 2>&1
+
+fi
+
+if $reload; then
+	# ags
+	"$SCRIPT_DIR"/ags.bash -r >"$CACHE_DIR"/ags.log 2>&1
 fi
 
 if $relaunch; then
-	# swaybg
-	if [ -n "$wall" ]; then
-		"$SCRIPT_DIR"/swaybg.bash "$wall" >"$CACHE_DIR"/swaybg.log 2>&1
-	fi
 	# ags
 	"$SCRIPT_DIR"/ags.bash -R >"$CACHE_DIR"/ags.log 2>&1
-	# gradience
-	if [ -n "$mode" ]; then
-		"$SCRIPT_DIR"/gradience.bash -r "$mode" >"$CACHE_DIR"/gradience.log 2>&1
-	fi
-	# kvantum
-	"$SCRIPT_DIR"/kvantum.bash -r >"$CACHE_DIR"/kvantum.log 2>&1
 fi
