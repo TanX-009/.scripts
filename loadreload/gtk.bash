@@ -12,16 +12,8 @@ apply_settings() {
 
 # Default values
 THEME="dark"
-RELAUNCH=false
 
-# Parse command line arguments
-while [[ "$#" -gt 0 ]]; do
-  case $1 in
-  -r | --relaunch) RELAUNCH=true ;;
-  *) THEME=$1 ;;
-  esac
-  shift
-done
+THEME=$1
 
 # Apply the color preset if not relaunching
 if [ "$THEME" == "dark" ]; then
@@ -32,14 +24,6 @@ else
   GTK_THEME_NAME="adw-gtk3"
   ICON_THEME="Papirus-Light"
   COLOR_SCHEME="prefer-light"
-fi
-
-if ! $RELAUNCH; then
-  # Create gradience presets folder
-  mkdir -p "$HOME/.config/presets"
-
-  # Apply the color preset
-  gradience-cli apply -p "$HOME/.colors/generated/gtk/preset.json" --gtk both
 fi
 
 apply_settings "$THEME" "$GTK_THEME_NAME" "$COLOR_SCHEME" "$ICON_THEME"
