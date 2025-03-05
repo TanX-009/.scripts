@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RECORDING_LOCATION=/SSD/O/recordings
+RECORDING_LOCATION=$HOME/O/recordings
 mkdir -p "$RECORDING_LOCATION"
 
 getdate() {
